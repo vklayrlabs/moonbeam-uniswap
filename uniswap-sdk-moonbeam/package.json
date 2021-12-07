@@ -1,5 +1,5 @@
 {
-  "name": "moonbeamswap",
+  "name": "layrswap-sdk",
   "license": "MIT",
   "version": "1.0.4",
   "description": "🛠 An example SDK for building applications on top of Uniswap in Moonbeam.",
