@@ -2,7 +2,7 @@ import { ChainId, JSBI, Percent, Token, WDEV } from 'moonbeamswap'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { routerv2 } from '../moonbase_address.json'
 
-import { injected, walletconnect } from '../connectors'
+import { injected } from '../connectors'
 //fortmatic, portis, walletconnect, walletlink, lattice
 export const ROUTER_ADDRESS: { [key: string]: string } = {
   [ChainId.STANDALONE]: '0x42e2EE7Ba8975c473157634Ac2AF4098190fc741',
@@ -130,15 +130,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     href: null,
     color: '#E8831D',
   },
-  WALLET_CONNECT: {
-    connector: walletconnect,
-    name: 'WalletConnect',
-    iconName: 'walletConnectIcon.svg',
-    description: 'Connect to Trust Wallet, Rainbow Wallet and more...',
-    href: null,
-    color: '#4196FC',
-    mobile: true,
-  } /*
+  /*
   LATTICE: {
     connector: lattice,
     name: 'Lattice',
@@ -182,7 +174,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     href: null,
     color: '#4A6C9B',
     mobile: true
-  }*/,
+  }*/
 }
 
 export const NetworkContextName = 'NETWORK'
