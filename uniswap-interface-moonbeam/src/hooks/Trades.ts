@@ -1,8 +1,8 @@
-import { Currency, CurrencyAmount, Pair, Token, Trade } from 'moonbeamswap'
+import { Currency, CurrencyAmount, Pair, Token, Trade } from 'layrswap-sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
 
-import { BASES_TO_CHECK_TRADES_AGAINST, CUSTOM_BASES } from '../constants'
+import { BASES_TO_CHECK_TRADES_AGAINST } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
@@ -40,21 +40,6 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
           ]
             .filter((tokens): tokens is [Token, Token] => Boolean(tokens[0] && tokens[1]))
             .filter(([t0, t1]) => t0.address !== t1.address)
-            .filter(([tokenA, tokenB]) => {
-              if (!chainId) return true
-              const customBases = CUSTOM_BASES[chainId]
-              if (!customBases) return true
-
-              const customBasesA: Token[] | undefined = customBases[tokenA.address]
-              const customBasesB: Token[] | undefined = customBases[tokenB.address]
-
-              if (!customBasesA && !customBasesB) return true
-
-              if (customBasesA && !customBasesA.find(base => tokenB.equals(base))) return false
-              if (customBasesB && !customBasesB.find(base => tokenA.equals(base))) return false
-
-              return true
-            })
         : [],
     [tokenA, tokenB, bases, basePairs, chainId]
   )

@@ -1,4 +1,4 @@
-import { ChainId } from 'moonbeamswap'
+import { ChainId } from 'layrswap-sdk'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
 import { Text } from 'rebass'
@@ -113,11 +113,7 @@ const BalanceText = styled(Text)`
 `
 
 const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {
-  [ChainId.MAINNET]: null,
-  [ChainId.STANDALONE]: 'Moonbeam Development',
-  [ChainId.MOONROCK]: 'Moonrock Rococo',
-  [ChainId.MOONBASE]: 'Moonbase Alpha',
-  [ChainId.MOONSHADOW]: 'Moonshadow Westend',
+  [ChainId.MAINNET]: "AceLayr"
 }
 
 export default function Header() {

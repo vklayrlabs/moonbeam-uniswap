@@ -1,4 +1,4 @@
-import { ChainId, Token } from 'moonbeamswap'
+import { ChainId, Token } from 'layrswap-sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -27,15 +27,12 @@ export class WrappedTokenInfo extends Token {
 
 export type TokenAddressMap = Readonly<{ [chainId in ChainId]: Readonly<{ [tokenAddress: string]: WrappedTokenInfo }> }>
 
+
 /**
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: TokenAddressMap = {
   [ChainId.MAINNET]: {},
-  [ChainId.STANDALONE]: {},
-  [ChainId.MOONROCK]: {},
-  [ChainId.MOONBASE]: {},
-  [ChainId.MOONSHADOW]: {}
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =

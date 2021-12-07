@@ -1,5 +1,5 @@
 import { Contract } from '@ethersproject/contracts'
-import { ChainId, WDEV } from 'moonbeamswap'
+import { ChainId } from 'layrswap-sdk'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { useMemo } from 'react'
 import ENS_ABI from '../constants/abis/ens-registrar.json'
@@ -38,7 +38,7 @@ export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: b
 
 export function useWDEVContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId ? WDEV[chainId].address : undefined, WDEV_ABI, withSignerIfPossible)
+  return useContract(chainId ? "0xBEFC47cfece01a47Ab7CC8bF0c0246619b97cDC2" : undefined, WDEV_ABI, withSignerIfPossible)
 }
 
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
@@ -48,10 +48,6 @@ export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contrac
     switch (chainId) {
       case ChainId.MAINNET:
         address = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
-        break
-      case ChainId.STANDALONE:
-        break
-      case ChainId.MOONBASE:
         break
     }
   }

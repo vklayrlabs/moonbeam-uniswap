@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, DEV, TokenAmount, WDEV } from 'moonbeamswap'
+import { Currency, currencyEquals, DEV, TokenAmount, WDEV } from 'layrswap-sdk'
 import React, { useCallback, useContext, useState } from 'react'
 import { Plus } from 'react-feather'
 import ReactGA from 'react-ga'
@@ -142,13 +142,13 @@ export default function AddLiquidity({
     }
 
     const deadlineFromNow = Math.ceil(Date.now() / 1000) + deadline
-
     let estimate,
       method: (...args: any) => Promise<TransactionResponse>,
       args: Array<string | string[] | number>,
       value: BigNumber | null
     if (currencyA === DEV || currencyB === DEV) {
       const tokenBIsETH = currencyB === DEV
+      console.log(router)
       estimate = router.estimateGas.addLiquidityETH
       method = router.addLiquidityETH
       args = [
@@ -173,12 +173,14 @@ export default function AddLiquidity({
         account,
         deadlineFromNow
       ]
+
+      console.log(args)
       value = null
     }
 
     setAttemptingTxn(true)
     await estimate(...args, value ? { value } : {})
-      .then(estimatedGasLimit =>
+      .then(estimatedGasLimit => 
         method(...args, {
           ...(value ? { value } : {}),
           gasLimit: calculateGasMargin(estimatedGasLimit)
@@ -207,6 +209,8 @@ export default function AddLiquidity({
         })
       )
       .catch(error => {
+        console.log(error)
+
         setAttemptingTxn(false)
         // we only care if the error is something _other_ than the user rejected the tx
         if (error?.code !== 4001) {

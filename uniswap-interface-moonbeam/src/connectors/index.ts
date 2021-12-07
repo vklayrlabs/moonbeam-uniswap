@@ -28,11 +28,9 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [1281, 1287],
+  supportedChainIds: [420],
   //supportedChainIds: [1, 3, 4, 5, 42, 1287]
 })
-
-
 
 // mainnet only
 export const fortmatic = new FortmaticConnector({

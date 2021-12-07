@@ -1,4 +1,4 @@
-import { currencyEquals, Trade } from 'moonbeamswap'
+import { currencyEquals, Trade } from 'layrswap-sdk'
 import React, { useCallback, useMemo } from 'react'
 import TransactionConfirmationModal, {
   ConfirmationModalContent,
